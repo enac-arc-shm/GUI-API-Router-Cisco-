@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Router - Cisco configuration GUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class='dashboard'>
+        <div class="dashboard-nav">
+            <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"><i
+                        class=""></i> <span>ROUTER</span></a></header>
+            <nav class="dashboard-nav-list"><a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i>
+                    Users </a>
+            </nav>
+        </div>
+        <div class='dashboard-app'>
+            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+            <div class='dashboard-content'>
+                <div class='container'>
+                    <div class='card'>
+                        <div class='card-header'>
+                            <h1>Users of the router</h1>
+                        </div>
+                        <table class="table-fill">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">User</th>
+                                    <th class="text-left">Privilege</th>
+                                    <th class="text-left">Password</th>
+                                    <th class="text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-hover">
+                                {% for user in users %}
+                                <tr>
+                                    <td class="text-left">{{ user['name'] }}</td>
+                                    <td class="text-left">{{ user['privilege']}}</td>
+                                    <td class="text-left">{{ user['password'] }} {{ user['secret'] }}</td>
+                                    <td class="text-left"><a href="{{ url_for('delete_item', user=user['name']) }}" class="delete-button">Eliminar</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <a href="/form" id="loadMore" class="el-boton">Add a new user</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'>
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
